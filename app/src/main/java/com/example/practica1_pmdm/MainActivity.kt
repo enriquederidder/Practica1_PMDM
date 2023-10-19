@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         contador++;
         Log.i("ESTADOS","Creando la actividad:"+contador)
         Log.i("ESTADOS","Evento onCreate:"+contador)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_edr_primos)
 
         buttonReturn = findViewById(R.id.buttonReturn)
 

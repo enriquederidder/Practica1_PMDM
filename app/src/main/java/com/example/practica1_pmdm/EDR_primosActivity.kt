@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.practica1_pmdm.R.id.buttonReturn
 
 class EDR_primosActivity : AppCompatActivity() {
 
