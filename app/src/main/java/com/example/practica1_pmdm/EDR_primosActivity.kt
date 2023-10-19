@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.practica1_pmdm.R.id.buttonReturn
 
 class EDR_primosActivity : AppCompatActivity() {
 
@@ -21,7 +20,7 @@ class EDR_primosActivity : AppCompatActivity() {
         }
 
     }
-    fun cal_primos(n:Int):ArrayList<Int>{
+    fun cal_primos(n: Int):ArrayList<Int>{
         var elementos = ArrayList<Int>()
 
         for(i in 1  ..  n){

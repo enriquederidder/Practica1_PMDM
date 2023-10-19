@@ -12,8 +12,7 @@ class MainActivity : AppCompatActivity() {
     var contador:Int=0;
     lateinit var buttonReturn: Button
 
-    @SuppressLint("MissingInflatedId")
-    override fun onCreate(savedInstanceState: Bundle?) {
+       override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         EDR = 0;
         contador++;
@@ -25,12 +24,11 @@ class MainActivity : AppCompatActivity() {
 
         buttonReturn.setOnClickListener {
             val numPrimoActivity = EDR_primosActivity()
-            val numero = 9
-            val resultados = numPrimoActivity.cal_primos(numero)
+            val numero = Math.random() * 10
+            val resultados = numPrimoActivity.cal_primos(numero.toInt())
 
             Log.d("MainActivity", "Números primos: $resultados")
         }
-
     }
     override fun onStart() {
         super.onStart()
