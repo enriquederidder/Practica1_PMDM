@@ -12,11 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica1_PMDM"
         tools:targetApi="31">
-        <service
-            android:name=".PrimoServicio"
-            android:enabled="true"
-            android:exported="true"></service>
-
+        <activity
+            android:name=".EDRprimosXActivity"
+            android:exported="false" />
         <activity
             android:name=".EDR_primosActivity"
             android:exported="false" />

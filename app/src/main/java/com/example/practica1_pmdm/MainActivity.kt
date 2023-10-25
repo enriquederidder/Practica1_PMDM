@@ -1,11 +1,12 @@
 package com.example.practica1_pmdm
 
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     var contador:Int=0;
     lateinit var buttonReturn: Button
     lateinit var buttonIraActivityPrimos: Button
+    lateinit var buttonReturnX: Button
 
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,17 +27,32 @@ class MainActivity : AppCompatActivity() {
            buttonReturn = findViewById(R.id.buttonReturn)
 
            buttonReturn.setOnClickListener {
-           val intent = Intent(this,EDR_primosActivity::class.java)
-           intent.putExtra("numero",36)
-           startActivityForResult(intent,1)
+               val intent = Intent(this,EDR_primosActivity::class.java)
+               intent.putExtra("numero",36)
+               startActivityForResult(intent,1)
+           }
 
-       }
+           buttonReturnX = findViewById(R.id.buttonReturnX)
+
+           buttonReturnX.setOnClickListener {
+               val intent = Intent(this, EDRprimosXActivity::class.java)
+               intent.putExtra("numero", 5)
+               getResult.launch(intent)
+           }
+
     }
+    private val getResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                val resultado = data?.getIntegerArrayListExtra("Resultado")
+                // Handle the result here
+            }
+        }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         var resultado = data?.getStringExtra("Resultado")
         Log.i("Resultado", resultado!!)
-
     }
     override fun onStart() {
         super.onStart()
