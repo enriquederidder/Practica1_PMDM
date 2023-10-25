@@ -1,6 +1,7 @@
 package com.example.practica1_pmdm
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,24 +12,30 @@ class MainActivity : AppCompatActivity() {
     var EDR:Int=0;
     var contador:Int=0;
     lateinit var buttonReturn: Button
+    lateinit var buttonIraActivityPrimos: Button
 
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         EDR = 0;
         contador++;
-        Log.i("ESTADOS","Creando la actividad:"+contador)
+        Log.i("ESTADOS","Creando actividad:"+contador)
         Log.i("ESTADOS","Evento onCreate:"+contador)
         setContentView(R.layout.activity_edr_primos)
 
-        buttonReturn = findViewById(R.id.buttonReturn)
+           buttonReturn = findViewById(R.id.buttonReturn)
 
-        buttonReturn.setOnClickListener {
-            val numPrimoActivity = EDR_primosActivity()
-            val numero = Math.random() * 10
-            val resultados = numPrimoActivity.cal_primos(numero.toInt())
+           buttonReturn.setOnClickListener {
+           val intent = Intent(this,EDR_primosActivity::class.java)
+           intent.putExtra("numero",36)
+           startActivityForResult(intent,1)
 
-            Log.d("MainActivity", "Números primos: $resultados")
-        }
+       }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        var resultado = data?.getStringExtra("Resultado")
+        Log.i("Resultado", resultado!!)
+
     }
     override fun onStart() {
         super.onStart()

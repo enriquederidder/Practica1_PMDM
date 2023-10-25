@@ -7,17 +7,15 @@ import android.widget.Button
 
 class EDR_primosActivity : AppCompatActivity() {
 
-    lateinit var botonVolver: Button
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edr_primos)
-
-        botonVolver = findViewById(R.id.buttonReturn)
-        botonVolver.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+        var numero = intent.getIntExtra("numero",-1)
+        var returnIntent = Intent()
+        var resultadoPrimo = cal_primos(numero)
+        returnIntent.putExtra("Resultado", resultadoPrimo.toString())
+        setResult(RESULT_OK, returnIntent)
+        finish()
 
     }
     fun cal_primos(n: Int):ArrayList<Int>{
