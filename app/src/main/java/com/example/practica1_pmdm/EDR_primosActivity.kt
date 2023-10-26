@@ -1,9 +1,8 @@
 package com.example.practica1_pmdm
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 
 class EDR_primosActivity : AppCompatActivity() {
 
@@ -11,7 +10,7 @@ class EDR_primosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edr_primos)
-        var numero = intent.getIntExtra("numero",-1)
+        var numero = intent.getIntExtra("numero", -1)
         var returnIntent = Intent()
         var resultadoPrimo = cal_primos(numero)
         returnIntent.putExtra("Resultado", resultadoPrimo.toString())
@@ -19,17 +18,19 @@ class EDR_primosActivity : AppCompatActivity() {
         finish()
 
     }
-    fun cal_primos(n: Int):ArrayList<Int>{
+
+    fun cal_primos(n: Int): ArrayList<Int> {
         var elementos = ArrayList<Int>()
 
-        for(i in 1  ..  n){
-            if(esPrimo(i, i-1)){
+        for (i in 1..n) {
+            if (esPrimo(i, i - 1)) {
                 elementos.add(i)
             }
         }
 
         return elementos
     }
+
     private fun esPrimo(n: Int, divisor: Int): Boolean {
         if (divisor <= 1) {
             return true
