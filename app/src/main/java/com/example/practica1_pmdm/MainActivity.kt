@@ -52,10 +52,12 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        var resultado = data?.getStringExtra("Resultado")
-        Log.i("Resultado", resultado!!)
-    }
 
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            val resultado = data?.getStringExtra("Resultado")
+            Log.i("Resultado", resultado!!)
+        }
+    }
     override fun onStart() {
         super.onStart()
         contador++;
