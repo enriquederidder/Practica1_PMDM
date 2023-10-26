@@ -1,5 +1,6 @@
 package com.example.practica1_pmdm
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -18,14 +19,14 @@ class MainActivity : AppCompatActivity() {
 
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        EDR = 0;
-        contador++;
-        Log.i("ESTADOS","Creando actividad:"+contador)
-        Log.i("ESTADOS","Evento onCreate:"+contador)
-        setContentView(R.layout.activity_edr_primos)
+        setContentView(R.layout.activity_main)
+
+           EDR = 0;
+           contador++;
+           Log.i("ESTADOS","Creando actividad:"+contador)
+           Log.i("ESTADOS","Evento onCreate:"+contador)
 
            buttonReturn = findViewById(R.id.buttonReturn)
-
            buttonReturn.setOnClickListener {
                val intent = Intent(this,EDR_primosActivity::class.java)
                intent.putExtra("numero",36)
@@ -37,23 +38,24 @@ class MainActivity : AppCompatActivity() {
            buttonReturnX.setOnClickListener {
                val intent = Intent(this, EDRprimosXActivity::class.java)
                intent.putExtra("numero", 5)
-               getResult.launch(intent)
+               edrPrimosResultLauncher.launch(intent)
            }
-
-    }
-    private val getResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                val resultado = data?.getIntegerArrayListExtra("Resultado")
-                // Handle the result here
-            }
+       }
+    private val edrPrimosResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val data: Intent? = result.data
+            val resultado = data?.getStringExtra("Resultado")
+            Log.i("Resultado", resultado!!)
         }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         var resultado = data?.getStringExtra("Resultado")
         Log.i("Resultado", resultado!!)
     }
+
     override fun onStart() {
         super.onStart()
         contador++;

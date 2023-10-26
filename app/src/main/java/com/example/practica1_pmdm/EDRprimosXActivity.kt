@@ -8,7 +8,7 @@ class EDRprimosXActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edr_primos_xactivity)
+        setContentView(R.layout.activity_edrprimos_xactivity)
         var numero = intent.getIntExtra("numero", -1)
         var resultadoPrimo = cal_primos(numero)
 
