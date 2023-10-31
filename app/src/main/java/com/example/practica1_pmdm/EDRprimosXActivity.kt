@@ -5,14 +5,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 class EDRprimosXActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edrprimos_xactivity)
         var numero = intent.getIntExtra("numero", -1)
+        var returnIntent = Intent()
         var resultadoPrimo = cal_primos(numero)
 
-        val returnIntent = Intent()
         returnIntent.putExtra("Resultado", resultadoPrimo.toString())
         setResult(RESULT_OK, returnIntent)
         finish()
